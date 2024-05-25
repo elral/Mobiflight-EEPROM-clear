@@ -42,7 +42,7 @@ bool MFEEPROM::write_block(uint16_t adr, char data[], uint16_t len)
     if (adr + len > _eepromLength) return false;
     for (uint16_t i = 0; i < len; i++) {
 #if defined(ARDUINO_ARCH_STM32)
-        eeprom_buffered_write_byte(adr, data[i]);
+        eeprom_buffered_write_byte(adr + i, data[i]);
 #else
         EEPROM.put(adr + i, data[i]);
 #endif
