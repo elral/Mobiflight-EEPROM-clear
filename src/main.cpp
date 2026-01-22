@@ -25,6 +25,9 @@ void setup()
     }
     if (MFeeprom.write_block(0, buffer, bufferlength)) {
     }
+#if defined(ARDUINO_ARCH_RP2040) &&(defined PICO_RP2350A)
+    rp2040.rebootToBootloader();
+#endif
 }
 
 void loop()
